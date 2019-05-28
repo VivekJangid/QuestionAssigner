@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+autopep8 = "*"
+v = {editable = true,version = "*"}
+
+[packages]
+django = "*"
+mysqlclient = "*"
+django-rest-knox = "*"
+pylint-django = "*"
+djangorestframework = "*"
+django-filter = "*"
+djangorestframework-filters = "*"
+
+[requires]
+python_version = "3"
