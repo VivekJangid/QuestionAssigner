@@ -1,0 +1,33 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "webpack --mode development --watch ./src/index.js --output ./static/main.js",
+    "build": "webpack --mode production ./src/index.js --output ./static/main.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.29.1",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "npm": "^6.9.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-alert": "^5.5.0",
+    "react-alert-template-basic": "^1.0.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-transition-group": "^2.9.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  }
+}

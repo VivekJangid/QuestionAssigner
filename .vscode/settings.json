@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/vivek/.local/share/virtualenvs/question-assigner-master-d5t6vCIU/bin/python"
+    "python.pythonPath": "/home/vivek/.local/share/virtualenvs/question-assigner-master-d5t6vCIU/bin/python",
+    "git.ignoreLimitWarning": true
 }
