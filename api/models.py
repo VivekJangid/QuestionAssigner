@@ -21,7 +21,6 @@ class Assignment(models.Model):
     skills_required = models.CharField(max_length=200)
     completed = models.BooleanField(default=False)
     level_required = models.CharField(max_length=50)
-    project_data = models.ForeignKey(Project, on_delete=models.CASCADE)
-    is_assigned = models.BooleanField()
+    is_assigned = models.BooleanField(default=False)
     created_at = models.DateTimeField(null=True, auto_now_add=True)
     updated_at = models.DateTimeField(null=True, auto_now_add=True)

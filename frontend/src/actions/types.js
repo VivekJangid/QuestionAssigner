@@ -1,0 +1,15 @@
+export const GET_ASSIGNMENT = "GET_ASSIGNMENT";
+export const GET_ALLASSIGNMENTS = "GET_ALLASSIGNMENTS";
+export const NEW_ASSIGNMENT = "NEW_ASSIGNMENT";
+export const MARK_ASSIGNED = "MARK_ASSIGNED";
+export const MARK_COMPLETED = "MARK_COMPLETED";
+
+export const USER_LOADED = "USER_LOADED";
+export const USER_LOADING = "USER_LOADING";
+export const AUTH_ERROR = "AUTH_ERROR";
+
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGOUT_FAIL = "LOGOUT_FAIL";
