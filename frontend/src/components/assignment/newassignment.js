@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { newAssignment } from "../../actions/assignment";
+import { Link } from "react-router-dom";
 
 export class NewAssignment extends Component {
   state = {
@@ -68,6 +69,7 @@ export class NewAssignment extends Component {
             </button>
           </div>
         </form>
+        <Link to="/">View Assignments</Link>
       </div>
     );
   }

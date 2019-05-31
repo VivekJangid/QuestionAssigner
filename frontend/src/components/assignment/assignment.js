@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { get_Allassignments } from "../../actions/assignment";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Assignment extends Component {
   static propTypes = {
@@ -32,20 +33,25 @@ class Assignment extends Component {
             <tbody>
               {this.props.assignments.map(assignment => (
                 <tr key={assignment.id}>
-                  <td>{assignment.question}</td>
+                  <td>
+                    <Link to={"/a/" + assignment.id}>
+                      {assignment.question}
+                    </Link>
+                  </td>
+
                   <td>{assignment.skills_required}</td>
                   <td>{assignment.level_required}</td>
-                  <td>{assignment.is_assignmed}</td>
-                  <td>{assignment.completed}</td>
+                  <td>
+                    {assignment.is_assignmed ? <p>true</p> : <p>false</p>}
+                  </td>
+                  <td>{assignment.completed ? <p>true</p> : <p>false</p>}</td>
                   <td>{assignment.created_at}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </Fragment>
-        <button type="button" className="btn btn-sm btn-light m-auto ">
-          Add Assignment
-        </button>
+        <Link to="/newassignment">Add Assignments</Link>
       </div>
     );
   }
@@ -54,7 +60,6 @@ class Assignment extends Component {
 const mapStateToProps = state => ({
   assignments: state.assignment.assignments
 });
-
 export default connect(
   mapStateToProps,
   { get_Allassignments }

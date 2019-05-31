@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import Header from "./components/layout/header";
 import Assignment from "./components/assignment/assignment";
+import NewAssignment from "./components/assignment/newassignment";
 import { Provider } from "react-redux";
 import Login from "./components/accounts/Login";
+import SingleAssignment from "./components/assignment/singleassignment";
 import store from "./store";
-import PrivateRoutes from "./components/common/PrivateRoutes";
+import PrivateRoute from "./components/common/PrivateRoute";
 import { loadUser } from "./actions/auth";
-
 import {
   HashRouter as Router,
   Route,
@@ -26,8 +27,18 @@ class App extends Component {
             <Header />
             <div className="container">
               <Switch>
-                <PrivateRoutes exact path="/" component={Assignment} />
-                <Route exact path="/" component={Login} />
+                <Route exact path="/login" component={Login} />
+                <PrivateRoute exact path="/" component={Assignment} />
+                <PrivateRoute
+                  exact
+                  path="/a/:id"
+                  component={SingleAssignment}
+                />
+                <PrivateRoute
+                  exact
+                  path="/newassignment"
+                  component={NewAssignment}
+                />
               </Switch>
             </div>
           </Fragment>

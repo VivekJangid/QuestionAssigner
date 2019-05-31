@@ -19,11 +19,3 @@ class ProjectView(viewsets.ModelViewSet):
 class AssignmentView(viewsets.ModelViewSet):
     serializer_class = AssignmentSerializer
     queryset = Assignment.objects.all()
-    lookup_field = 'project_id'
-
-    def retrieve(self, request, *args, **kwargs):
-        project_id = kwargs.get('project_id', None)
-        project = Project.objects.get(id=project_id)
-        self.queryset = Assignment.objects.filter(
-            project_data=project_id).distinct()
-        return super(AssignmentView, self).retrieve(request, *args, **kwargs)
