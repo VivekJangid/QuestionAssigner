@@ -26,8 +26,10 @@ export class NewAssignment extends Component {
 
   render() {
     return (
-      <div className="container card card-body mt-4 mb-4">
-        <h3>Add Assignments !!!</h3>
+      <div className="container card border-light card-body mt-5 mb-5  ">
+        <div class="card-header">
+          <h3>Add Assignments</h3>
+        </div>
 
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -68,8 +70,10 @@ export class NewAssignment extends Component {
               submit
             </button>
           </div>
+          <span className="float-right btn btn-light">
+            <Link to="/">View Assignments</Link>
+          </span>
         </form>
-        <Link to="/">View Assignments</Link>
       </div>
     );
   }

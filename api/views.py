@@ -19,3 +19,8 @@ class ProjectView(viewsets.ModelViewSet):
 class AssignmentView(viewsets.ModelViewSet):
     serializer_class = AssignmentSerializer
     queryset = Assignment.objects.all()
+
+
+class SkillView(viewsets.ModelViewSet):
+    serializer_class = SkillSerializer
+    queryset = Skill.objects.all()

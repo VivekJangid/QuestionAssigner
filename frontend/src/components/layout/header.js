@@ -29,25 +29,27 @@ export class Header extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a className="navbar-brand" href="#">
-            Question Assigner
-          </a>
-        </div>
-        {isAuthenticated ? <div>"Hello" </div> : authLinks}
-      </nav>
+      <div className="container">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a className="navbar-brand" href="#">
+              Question Assigner
+            </a>
+          </div>
+          {isAuthenticated ? <div>"Hello" </div> : authLinks}
+        </nav>
+      </div>
     );
   }
 }

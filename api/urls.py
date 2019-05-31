@@ -8,5 +8,6 @@ router.register('api/candidates', views.CandidateView,
 router.register('api/projects', views.ProjectView, base_name='ProjectView')
 router.register('api/assignments', views.AssignmentView,
                 base_name='AssignmentView')
+router.register('api/skills', views.SkillView, base_name='SkillView')
 
 urlpatterns = router.urls

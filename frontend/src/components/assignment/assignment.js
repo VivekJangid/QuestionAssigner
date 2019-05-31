@@ -16,9 +16,12 @@ class Assignment extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container card border-light card-body mt-5 mb-5  ">
         <Fragment>
-          <h2>Assignments</h2>
+          <div class="card-header">
+            <h3> Assignments</h3>
+          </div>
+
           <table className="table table-hover">
             <thead>
               <tr>
@@ -50,8 +53,10 @@ class Assignment extends Component {
               ))}
             </tbody>
           </table>
+          <span className="float-right btn btn-light">
+            <Link to="/newassignment">Add Assignments</Link>
+          </span>
         </Fragment>
-        <Link to="/newassignment">Add Assignments</Link>
       </div>
     );
   }

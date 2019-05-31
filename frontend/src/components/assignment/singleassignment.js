@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { get_Assignment } from "../../actions/assignment";
 
 export class SingleAssignment extends Component {
   static propTypes = {
