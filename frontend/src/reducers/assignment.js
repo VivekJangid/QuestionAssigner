@@ -1,15 +1,11 @@
 import {
   NEW_ASSIGNMENT,
   GET_ALLASSIGNMENTS,
-  GET_ASSIGNMENT,
-  MARK_ASSIGNED,
-  MARK_COMPLETED
+  GET_ASSIGNMENT
 } from "../actions/types";
 
 const initialState = {
-  assignments: [],
-  assigned: false,
-  completed: false
+  assignments: []
 };
 
 export default function(state = initialState, action) {
@@ -31,20 +27,6 @@ export default function(state = initialState, action) {
         assignments: state.assignments.filter(
           assignment => assignment.id == action.payload
         )
-      };
-    case MARK_ASSIGNED:
-      return {
-        ...state,
-        ...action.payload,
-        assigned: true
-      };
-
-    case MARK_COMPLETED:
-      return {
-        ...state,
-        ...action.payload,
-        assigned: true,
-        completed: true
       };
     default:
       return state;

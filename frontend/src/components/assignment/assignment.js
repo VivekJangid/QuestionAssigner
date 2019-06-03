@@ -18,7 +18,7 @@ class Assignment extends Component {
     return (
       <div className="container card border-light card-body mt-5 mb-5  ">
         <Fragment>
-          <div class="card-header">
+          <div className="card-header">
             <h3> Assignments</h3>
           </div>
 

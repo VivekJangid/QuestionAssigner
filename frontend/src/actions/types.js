@@ -1,8 +1,9 @@
 export const GET_ASSIGNMENT = "GET_ASSIGNMENT";
 export const GET_ALLASSIGNMENTS = "GET_ALLASSIGNMENTS";
 export const NEW_ASSIGNMENT = "NEW_ASSIGNMENT";
-export const MARK_ASSIGNED = "MARK_ASSIGNED";
-export const MARK_COMPLETED = "MARK_COMPLETED";
+
+export const GET_ALLSKILLS = "GET_ALLSKILLS";
+export const NEW_SKILL = "NEW_SKILL";
 
 export const USER_LOADED = "USER_LOADED";
 export const USER_LOADING = "USER_LOADING";
