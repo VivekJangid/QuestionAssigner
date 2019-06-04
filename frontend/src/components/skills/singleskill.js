@@ -6,8 +6,8 @@ export class SingleSkill extends Component {
   };
 
   buttonclass() {
-    let style = "btn btn-rounded btn-sm not-link btn-";
-    style += this.state.active === true ? "success" : "primary";
+    let style = "btn btn-rounded btn-sm  btn-";
+    style += this.state.active === true ? "primary" : "outline-info";
     return style;
   }
 

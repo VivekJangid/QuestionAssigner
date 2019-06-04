@@ -22,6 +22,8 @@ class AssignmentView(viewsets.ModelViewSet):
 
     
 
+    
+
 class SkillView(viewsets.ModelViewSet):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
