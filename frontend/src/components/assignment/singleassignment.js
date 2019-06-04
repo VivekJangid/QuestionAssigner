@@ -20,30 +20,25 @@ export class SingleAssignment extends Component {
   }
 
   render() {
-    // console.log(this.state);
     const {
       id,
       question,
       skills_required,
-      level_required,
-      is_assigned,
-      completed,
-      created_at
+      level_required
     } = this.state.assignment;
 
     return (
-      <div className="container">
+      <div className="container card border-light card-body mt-5 mb-5  ">
         <Fragment>
-          <h2>Assignment</h2>
+          <div className="card-header">
+            <h3> Assignments</h3>
+          </div>
           <table className="table table-hover">
             <thead>
               <tr>
                 <th>Assignment</th>
                 <th>Skills Required</th>
                 <th>Level Required</th>
-                <th>Assigned</th>
-                <th>Completed</th>
-                <th>Created At</th>
               </tr>
             </thead>
             <tbody>
@@ -51,9 +46,6 @@ export class SingleAssignment extends Component {
                 <td>{question}</td>
                 <td>{skills_required}</td>
                 <td>{level_required}</td>
-                <td>{is_assigned ? <p>true</p> : <p>false</p>}</td>
-                <td>{completed ? <p>true</p> : <p>false</p>}</td>
-                <td>{created_at}</td>
               </tr>
             </tbody>
           </table>

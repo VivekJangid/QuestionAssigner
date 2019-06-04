@@ -8,21 +8,24 @@ import Skill from "../skills/skill";
 export class NewAssignment extends Component {
   state = {
     question: "",
-    skills: "",
-    level_required: ""
+    level_required: "",
+    skills_required: []
   };
 
   static propTypes = {
     newAssignment: PropTypes.func.isRequired
   };
 
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  onChange = e =>
+    this.setState({
+      [e.target.name]: e.target.value,
+      selected: [this.props.selected]
+    });
 
   onSubmit = e => {
     e.preventDefault();
     console.log("hello");
-    const { question, skills, level_required } = this.state;
-    const skills_required = skills.split(",");
+    const { question, skills_required, level_required } = this.state;
     const assignment = { question, skills_required, level_required };
 
     this.props.newAssignment(assignment);
@@ -49,14 +52,7 @@ export class NewAssignment extends Component {
 
           <div className="form-group">
             <label>Skills_required</label>
-            <input
-              type="text"
-              className="form-control"
-              name="skills"
-              onChange={this.onChange}
-              value={this.state.skills}
-            />
-            <Skill />
+            <Skill skills_required={this.state.skills_required} />
           </div>
 
           <div className="form-group">

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { get_Allskills } from "../../actions/skill";
 import Newskill from "./newskill";
+import SingleSkill from "./singleskill";
 
 class Skill extends Component {
   static propTypes = {
@@ -11,23 +12,32 @@ class Skill extends Component {
   };
 
   componentWillMount() {
+    console.log(this.props);
     this.props.get_Allskills();
   }
+
+  isSelected = id => {
+    var sel = this.props.skills_required  ;
+    if (sel.includes(id)) {
+      var index = sel.indexOf(id);
+      sel.splice(index, 1);
+    } else {
+      sel.push(id);
+    }
+  };
 
   render() {
     return (
       <div className="">
         <Fragment>
-          <div className="">
-            <p>Select Skills</p>
-          </div>
-
           <ol className="list-inline row">
             {this.props.skills.map(sk => (
-              <li key={sk.id} className="col-xs-12 col-sm-6 col-md-4">
-                <span className="btn btn-rounded btn-sm not-link">
-                  {sk.skill}
-                </span>
+              <li
+                key={sk.id}
+                className="col-xs-12 col-sm-6 col-md-4"
+                onClick={() => this.isSelected(sk.id)}
+              >
+                <SingleSkill>{sk.skill}</SingleSkill>
               </li>
             ))}
           </ol>

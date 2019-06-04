@@ -33,16 +33,15 @@ export class Newskill extends Component {
             name="skill"
             onChange={this.onChange}
             value={this.state.skill}
-            required
           />
         </div>
-        <span class="input-group-btn float-right">
-          <button
+        <span className="input-group-btn float-right">
+          <span
             onClick={this.onSubmit1}
             className="btn btn-primary submit visible-sm visible-md visible-lg"
           >
             Add Skill
-          </button>
+          </span>
         </span>
       </div>
     );

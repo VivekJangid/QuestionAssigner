@@ -28,8 +28,6 @@ class Assignment extends Component {
                 <th>Assignment</th>
                 <th>Skills Required</th>
                 <th>Level Required</th>
-                <th>Assigned</th>
-                <th>Completed</th>
                 <th>Created At</th>
               </tr>
             </thead>
@@ -41,13 +39,8 @@ class Assignment extends Component {
                       {assignment.question}
                     </Link>
                   </td>
-
                   <td>{assignment.skills_required}</td>
                   <td>{assignment.level_required}</td>
-                  <td>
-                    {assignment.is_assignmed ? <p>true</p> : <p>false</p>}
-                  </td>
-                  <td>{assignment.completed ? <p>true</p> : <p>false</p>}</td>
                   <td>{assignment.created_at}</td>
                 </tr>
               ))}
