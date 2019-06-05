@@ -8,6 +8,7 @@ import SingleAssignment from "./components/assignment/singleassignment";
 import store from "./store";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { loadUser } from "./actions/auth";
+import DeleteSkill from "./components/skills/deleteskill";
 import {
   HashRouter as Router,
   Route,
@@ -38,6 +39,11 @@ class App extends Component {
                   exact
                   path="/newassignment"
                   component={NewAssignment}
+                />
+                <PrivateRoute
+                  exact
+                  path="/deleteskill"
+                  component={DeleteSkill}
                 />
               </Switch>
             </div>

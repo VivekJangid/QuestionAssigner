@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { get_Allassignments } from "../../actions/assignment";
+import { get_Allassignments, deleteAssignment } from "../../actions/assignment";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Assignment extends Component {
   static propTypes = {
     assignments: PropTypes.array.isRequired,
-    get_Allassignments: PropTypes.func.isRequired
+    get_Allassignments: PropTypes.func.isRequired,
+    deleteAssignment: PropTypes.func.isRequired
   };
 
   componentWillMount() {
@@ -29,19 +30,33 @@ class Assignment extends Component {
                 <th>Skills Required</th>
                 <th>Level Required</th>
                 <th>Created At</th>
+                <th />
+                <th />
               </tr>
             </thead>
             <tbody>
               {this.props.assignments.map(assignment => (
                 <tr key={assignment.id}>
-                  <td>
-                    <Link to={"/a/" + assignment.id}>
-                      {assignment.question}
-                    </Link>
-                  </td>
+                  <td>{assignment.question}</td>
                   <td>{assignment.skills_required}</td>
                   <td>{assignment.level_required}</td>
                   <td>{assignment.created_at}</td>
+                  <td>
+                    <Link to={"/a/" + assignment.id}>
+                      <button className="btn btn-info btn-sm">Assign</button>
+                    </Link>
+                  </td>
+                  <td>
+                    <button
+                      onClick={this.props.deleteAssignment.bind(
+                        this,
+                        assignment.id
+                      )}
+                      className="btn btn-danger btn-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -60,5 +75,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { get_Allassignments }
+  { get_Allassignments, deleteAssignment }
 )(Assignment);

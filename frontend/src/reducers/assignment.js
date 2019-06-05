@@ -1,7 +1,8 @@
 import {
   NEW_ASSIGNMENT,
   GET_ALLASSIGNMENTS,
-  GET_ASSIGNMENT
+  GET_ASSIGNMENT,
+  DELETE_ASSIGNMENT
 } from "../actions/types";
 
 const initialState = {
@@ -26,6 +27,13 @@ export default function(state = initialState, action) {
         ...state,
         assignments: state.assignments.filter(
           assignment => assignment.id == action.payload
+        )
+      };
+    case DELETE_ASSIGNMENT:
+      return {
+        ...state,
+        assignments: state.assignments.filter(
+          assignment => assignment.id !== action.payload
         )
       };
     default:

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { newSkill } from "../../actions/skill";
+import { Link } from "react-router-dom";
 
 export class Newskill extends Component {
   state = {
@@ -23,9 +24,9 @@ export class Newskill extends Component {
 
   render() {
     return (
-      <div className="form-inline float-left bg-dark w-100 p-1 m-3">
+      <div className="form-inline bg-secondary w-90 p-1 m-3">
         <div className="form-group w-75 px-2">
-          <label>New Skill</label>
+          <label className="m-3 px-2">Add New Skill</label>
           <input
             type="text"
             className="form-control text-center"
@@ -35,12 +36,15 @@ export class Newskill extends Component {
             value={this.state.skill}
           />
         </div>
-        <span className="input-group-btn float-right">
+        <span className="input-group-btn float-center">
           <span
             onClick={this.onSubmit1}
             className="btn btn-primary submit visible-sm visible-md visible-lg"
           >
             Add Skill
+          </span>
+          <span className="btn btn-light submit visible-sm visible-md visible-lg">
+            <Link to="/deleteskill">Delete Skill</Link>
           </span>
         </span>
       </div>

@@ -1,4 +1,4 @@
-import { GET_ALLSKILLS, NEW_SKILL } from "./types";
+import { GET_ALLSKILLS, NEW_SKILL, DELETE_SKILL } from "./types";
 import axios from "axios";
 
 export const get_Allskills = () => dispatch => {
@@ -20,6 +20,18 @@ export const newSkill = skill => dispatch => {
       dispatch({
         type: NEW_SKILL,
         payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+export const deleteSkill = id => dispatch => {
+  axios
+    .delete(`http://localhost:8000/api/skills/${id}/`)
+    .then(res => {
+      dispatch({
+        type: DELETE_SKILL,
+        payload: id
       });
     })
     .catch(err => console.log(err));

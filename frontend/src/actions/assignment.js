@@ -1,9 +1,11 @@
 import {
   NEW_ASSIGNMENT,
   GET_ALLASSIGNMENTS,
-  GET_ASSIGNMENT
+  GET_ASSIGNMENT,
+  DELETE_ASSIGNMENT
 } from "../actions/types";
 import axios from "axios";
+import { tokenConfig } from "./auth";
 
 export const newAssignment = assignment => dispatch => {
   axios
@@ -36,6 +38,18 @@ export const get_Assignment = id => dispatch => {
       dispatch({
         type: GET_ASSIGNMENT,
         payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+export const deleteAssignment = id => dispatch => {
+  axios
+    .delete(`http://localhost:8000/api/assignments/${id}/`)
+    .then(res => {
+      dispatch({
+        type: DELETE_ASSIGNMENT,
+        payload: id
       });
     })
     .catch(err => console.log(err));

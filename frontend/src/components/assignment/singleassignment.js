@@ -28,16 +28,16 @@ export class SingleAssignment extends Component {
     } = this.state.assignment;
 
     return (
-      <div className="container card border-light card-body mt-5 mb-5  ">
+      <div className="container float-right border-light float-right-body mt-5 mb-5  ">
         <Fragment>
-          <div className="card-header">
+          <div className="float-right-header">
             <h3> Assignments</h3>
           </div>
           <table className="table table-hover">
             <thead>
               <tr>
                 <th>Assignment</th>
-                <th>Skills Required</th>
+                <th>Skill Required</th>
                 <th>Level Required</th>
               </tr>
             </thead>
@@ -50,6 +50,15 @@ export class SingleAssignment extends Component {
             </tbody>
           </table>
         </Fragment>
+        <div className="container">
+          <div className=" float-right">
+            <br />
+            <hr />
+            <form>
+              <input type="email" required />
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

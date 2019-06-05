@@ -12,12 +12,11 @@ class Skill extends Component {
   };
 
   componentWillMount() {
-    console.log(this.props);
     this.props.get_Allskills();
   }
 
   isSelected = id => {
-    var sel = this.props.skills_required  ;
+    var sel = this.props.skills_required;
     if (sel.includes(id)) {
       var index = sel.indexOf(id);
       sel.splice(index, 1);
@@ -34,7 +33,7 @@ class Skill extends Component {
             {this.props.skills.map(sk => (
               <li
                 key={sk.id}
-                className="col-xs-12 col-sm-6 col-md-4"
+                className="col-xs-12 center-block col-sm-3 col-md-2 m-2"
                 onClick={() => this.isSelected(sk.id)}
               >
                 <SingleSkill>{sk.skill}</SingleSkill>
