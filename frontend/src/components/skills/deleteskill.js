@@ -17,7 +17,7 @@ class DeleteSkill extends Component {
 
   render() {
     return (
-      <div className="container card border-light card-body mt-5 mb-5  ">
+      <div className="container card border-light card-body  ">
         <Fragment>
           <div className="card-header">
             <h3> Skills</h3>
@@ -27,7 +27,7 @@ class DeleteSkill extends Component {
             <thead>
               <tr>
                 <th>Skill</th>
-                <th />
+                <th>Delete Skill</th>
               </tr>
             </thead>
             <tbody>

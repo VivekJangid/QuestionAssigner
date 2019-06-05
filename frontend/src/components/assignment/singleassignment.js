@@ -54,8 +54,13 @@ export class SingleAssignment extends Component {
           <div className=" float-right">
             <br />
             <hr />
-            <form>
+            <form
+              action="mailto:intern_vivek@sarvika.com?subject=Complete Assignment"
+              method="post"
+              encType="text/plain"
+            >
               <input type="email" required />
+              <button type="submit">Send Mail</button>
             </form>
           </div>
         </div>
