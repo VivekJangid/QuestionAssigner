@@ -2,17 +2,30 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { get_Allassignments, deleteAssignment } from "../../actions/assignment";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { get_Allskills } from "../../actions/skill";
 
 class Assignment extends Component {
   static propTypes = {
     assignments: PropTypes.array.isRequired,
     get_Allassignments: PropTypes.func.isRequired,
-    deleteAssignment: PropTypes.func.isRequired
+    deleteAssignment: PropTypes.func.isRequired,
+    get_Allskills: PropTypes.func.isRequired,
+    skills: PropTypes.array.isRequired
   };
 
   componentWillMount() {
     this.props.get_Allassignments();
+    this.props.get_Allskills();
+  }
+
+  getskill(skid) {
+    let skobj = this.props.skills;
+    for (var i = 0; i < skobj.length; i++) {
+      if (skobj[i].id == skid) {
+        return <li>{skobj[i].skill}</li>;
+      }
+    }
   }
 
   render() {
@@ -38,7 +51,13 @@ class Assignment extends Component {
               {this.props.assignments.map(assignment => (
                 <tr key={assignment.id}>
                   <td>{assignment.question}</td>
-                  <td>{assignment.skills_required}</td>
+                  <td>
+                    {assignment.skills_required.map(sk => (
+                      <ol className="list-inline row  m-1 p-1" key={sk}>
+                        {this.getskill(sk)}
+                      </ol>
+                    ))}
+                  </td>
                   <td>{assignment.level_required}</td>
                   <td>{assignment.created_at}</td>
                   <td>
@@ -71,9 +90,11 @@ class Assignment extends Component {
 }
 
 const mapStateToProps = state => ({
-  assignments: state.assignment.assignments
+  assignments: state.assignment.assignments,
+  skills: state.skill.skills
 });
+
 export default connect(
   mapStateToProps,
-  { get_Allassignments, deleteAssignment }
+  { get_Allassignments, deleteAssignment, get_Allskills }
 )(Assignment);
