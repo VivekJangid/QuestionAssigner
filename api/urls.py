@@ -1,6 +1,9 @@
-from django.urls import path, include
+from django.urls import re_path, include
 from . import views
 from rest_framework import routers
+from django.conf.urls import url
+from django.views.decorators.csrf import csrf_exempt
+
 
 router = routers.DefaultRouter()
 router.register('api/candidates', views.CandidateView,
@@ -10,4 +13,5 @@ router.register('api/assignments', views.AssignmentView,
                 base_name='AssignmentView')
 router.register('api/skills', views.SkillView, base_name='SkillView')
 
-urlpatterns = router.urls
+urlpatterns = router.urls + [re_path(
+    r'^sendmail/(?P<emailto>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6})/(?P<aid>[\d+])/$', csrf_exempt(views.sendmail), name="sendmail"), ]

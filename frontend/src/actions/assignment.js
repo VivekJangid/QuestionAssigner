@@ -5,7 +5,6 @@ import {
   DELETE_ASSIGNMENT
 } from "../actions/types";
 import axios from "axios";
-import { tokenConfig } from "./auth";
 
 export const newAssignment = assignment => dispatch => {
   axios
@@ -53,4 +52,8 @@ export const deleteAssignment = id => dispatch => {
       });
     })
     .catch(err => console.log(err));
+};
+
+export const sendMail = (email, id) => dispatch => {
+  axios.post(`http://localhost:8000/sendmail/${email}/${id}/`);
 };

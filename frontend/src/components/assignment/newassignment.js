@@ -24,7 +24,6 @@ export class NewAssignment extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log("hello");
     const { question, skills_required, level_required } = this.state;
     const assignment = { question, skills_required, level_required };
 
