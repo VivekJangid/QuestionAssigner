@@ -38,7 +38,7 @@ python manage.py runserver
  Open New Tab on Terminal
  cd frontend
  npm i npm
- '''
+ ```
  
  Running React
  ```bash
