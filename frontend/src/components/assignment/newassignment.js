@@ -8,6 +8,7 @@ import Skill from "../skills/skill";
 export class NewAssignment extends Component {
   state = {
     question: "",
+    question_info: "",
     level_required: "",
     skills_required: []
   };
@@ -24,8 +25,18 @@ export class NewAssignment extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { question, skills_required, level_required } = this.state;
-    const assignment = { question, skills_required, level_required };
+    const {
+      question,
+      question_info,
+      skills_required,
+      level_required
+    } = this.state;
+    const assignment = {
+      question,
+      question_info,
+      skills_required,
+      level_required
+    };
 
     this.props.newAssignment(assignment);
   };
@@ -46,6 +57,17 @@ export class NewAssignment extends Component {
               name="question"
               onChange={this.onChange}
               value={this.state.question}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Question Description</label>
+            <input
+              type="text"
+              className="form-control"
+              name="question_info"
+              onChange={this.onChange}
+              value={this.state.question_info}
             />
           </div>
 

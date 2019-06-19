@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions, generics
 from .models import *
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import View
 
@@ -32,10 +32,11 @@ class SkillView(viewsets.ModelViewSet):
         serializer.save(skill=self.request.data["skill"].upper())
 
 
-def sendmail(request, emailto, aid):
+def sendmail(request, emailto, aid,filename):
     if(request.method == 'POST'):
         subject = 'Complete the assignments'
         message = Assignment.objects.get(id=aid).question
         from_email = 'intern_vivek@sarvika.com'
-        res = send_mail(subject, message, from_email, [emailto])
+        res = EmailMessage(subject, message, from_email, [emailto])
+        res.attach_file('AssignmentMails/{filename}')
         return HttpResponse(res)

@@ -48,6 +48,7 @@ export class SingleAssignment extends Component {
     const {
       id,
       question,
+      question_info,
       skills_required,
       level_required
     } = this.state.assignment;
@@ -56,9 +57,9 @@ export class SingleAssignment extends Component {
       <div className="container float-right border-light float-right-body mt-5 mb-5  ">
         <Fragment>
           <div className="float-right-header">
-            <h2> Assignment : </h2>
+            <h2> {question} </h2>
             <span className="container">
-              <h4>{question}</h4>
+              <h4>{question_info}</h4>
             </span>
           </div>
           <table className="table table-hover">
