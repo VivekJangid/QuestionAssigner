@@ -14,4 +14,4 @@ router.register('api/assignments', views.AssignmentView,
 router.register('api/skills', views.SkillView, base_name='SkillView')
 
 urlpatterns = router.urls + [re_path(
-    r'^sendmail/(?P<emailto>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6})/(?P<aid>[\d+])/(?P<filename>[\w.%+-])/$', csrf_exempt(views.sendmail), name="sendmail"), ]
+    r'^sendmail/(?P<emailto>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6})/(?P<aid>[\d+])/$', csrf_exempt(views.sendmail), name="sendmail"), ]

@@ -6,18 +6,8 @@ class Skill(models.Model):
     skill = models.CharField(max_length=50,  default='', unique=True)
 
 
-class Candidate(models.Model):
-    name = models.CharField(max_length=50, default='')
-    email = models.EmailField(max_length=254, null=False, default=None)
-    skills = models.ManyToManyField(Skill, blank=False)
-    mob = models.CharField(max_length=10, blank=False)
-    yrs_exp = models.FloatField()
-
-
-class Project(models.Model):
-    title = models.CharField(max_length=200)
-    created_at = models.DateField(null=True, auto_now_add=True)
-    updated_at = models.DateField(null=True, auto_now_add=True)
+class File(models.Model):
+    zipfile = models.FileField()
 
 
 class Assignment(models.Model):
@@ -30,5 +20,17 @@ class Assignment(models.Model):
     class Meta:
         ordering = ('level_required',)
 
-    def __str__(self):
-        return self.question
+
+# c = []
+# b = []
+# a = {}
+# for i in As:
+    # a['Question'] = As.question
+    # a['Question_info'] = As.question_info
+    # a['Level_Required'] = As.level_required
+# for j in i.skills_required.all():
+#     b.append(j.skill)
+# a['Skills'] = b
+# b = []
+# c.append(a)
+# a = {}

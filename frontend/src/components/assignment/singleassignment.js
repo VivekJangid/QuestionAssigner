@@ -30,7 +30,7 @@ export class SingleAssignment extends Component {
     let skobj = this.props.skills;
     for (var i = 0; i < skobj.length; i++) {
       if (skobj[i].id == skid) {
-        return <li>{skobj[i].skill}</li>;
+        return <li>{skobj[i].skill + "  "}</li>;
       }
     }
   }
@@ -41,7 +41,7 @@ export class SingleAssignment extends Component {
     e.preventDefault();
     const { id } = this.props.match.params;
     const { email } = this.state;
-    console.log(this.props.sendMail(email, id));
+    this.props.sendMail(email, id);
   };
 
   render() {
@@ -56,32 +56,34 @@ export class SingleAssignment extends Component {
     return (
       <div className="container float-right border-light float-right-body mt-5 mb-5  ">
         <Fragment>
-          <div className="float-right-header">
-            <h2> {question} </h2>
-            <span className="container">
-              <h4>{question_info}</h4>
-            </span>
+          <div id="AddToPdf" className="mt4">
+            <div className="float-right-header">
+              <h2 id="question"> {question} </h2>
+              <span className="container">
+                <h4 id="question_info">{question_info}</h4>
+              </span>
+            </div>
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th>Skill Required</th>
+                  <th>Level Required</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr key={id} id="question_skills">
+                  <td>
+                    {skills_required.map(sk => (
+                      <ol className="list-inline row m-1 p-1" key={sk}>
+                        {this.getskill(sk)}
+                      </ol>
+                    ))}
+                  </td>
+                  <td id="question_level">{level_required}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th>Skill Required</th>
-                <th>Level Required</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr key={id}>
-                <td>
-                  {skills_required.map(sk => (
-                    <ol className="list-inline row m-1 p-1" key={sk}>
-                      {this.getskill(sk)}
-                    </ol>
-                  ))}
-                </td>
-                <td>{level_required}</td>
-              </tr>
-            </tbody>
-          </table>
         </Fragment>
         <div className="container">
           <div className=" float-right">

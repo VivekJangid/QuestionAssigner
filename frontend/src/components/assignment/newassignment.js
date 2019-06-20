@@ -62,8 +62,9 @@ export class NewAssignment extends Component {
 
           <div className="form-group">
             <label>Question Description</label>
-            <input
-              type="text"
+            <textarea
+              rows="4"
+              cols="50"
               className="form-control"
               name="question_info"
               onChange={this.onChange}

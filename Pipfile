@@ -16,6 +16,9 @@ pylint-django = "*"
 djangorestframework = "*"
 django-filter = "*"
 djangorestframework-filters = "*"
+pdfkit = "*"
+reportlab = "*"
+pdfrw = "*"
 
 [requires]
 python_version = "3"
