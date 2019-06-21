@@ -17,7 +17,7 @@ export const newAssignment = assignment => dispatch => {
     })
     .catch(err => console.log(err));
 };
-
+ 
 export const get_Allassignments = () => dispatch => {
   axios
     .get("http://localhost:8000/api/assignments/")

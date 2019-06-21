@@ -1,27 +1,18 @@
 from django.shortcuts import render
 from .serializers import *
-from rest_framework import viewsets, permissions, generics
+from rest_framework import viewsets, permissions, generics, status
 from .models import *
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from django.core.mail import EmailMessage
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import View
-from django.core.files.storage import FileSystemStorage
 import os
 from reportlab.pdfgen import canvas
 import textwrap
 from reportlab.lib.pagesizes import A4
-
-
-class CandidateView(viewsets.ModelViewSet):
-    serializer_class = CandidateSerializer
-    queryset = Candidate.objects.all()
-
-
-class ProjectView(viewsets.ModelViewSet):
-    serializer_class = ProjectSerializer
-    queryset = Project.objects.all()
+from rest_framework.parsers import FileUploadParser, MultiPartParser
+from rest_framework.views import APIView
 
 
 class AssignmentView(viewsets.ModelViewSet):
@@ -37,15 +28,23 @@ class SkillView(viewsets.ModelViewSet):
         serializer.save(skill=self.request.data["skill"].upper())
 
 
-def savezip(request, file):
-    pass
+class FileView(APIView):
+    parser_class = (FileUploadParser, MultiPartParser,)
+
+    def post(self, request, *args, **kwargs):
+        file_serializer = FileSerializer(data=request.data)
+        if file_serializer.is_valid():
+            file_serializer.save()
+            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def sendmail(request, emailto, aid):
     if(request.method == 'POST'):
         filename = 'assignment.pdf'
         subject = 'Complete the assignments'
-        message = "Here is your Task"
+        message = "http://localhost:8000/#/uploadfile"
         i = Assignment.objects.get(id=aid)
         a = {}
         b = []
@@ -67,7 +66,6 @@ def sendmail(request, emailto, aid):
     c.setFont('Helvetica', 16)
     c.drawString(5, 720, 'Description')
     c.setFont('Helvetica', 10)
-
     x = 20
     y = 700
     for i in desc:

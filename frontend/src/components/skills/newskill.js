@@ -44,7 +44,7 @@ export class Newskill extends Component {
             Add Skill
           </span>
           <span className="btn btn-light submit visible-sm visible-md visible-lg">
-            <Link to="/deleteskill">Delete Skill</Link>
+            <Link to="/deleteskill">Delete Skills</Link>
           </span>
         </span>
       </div>

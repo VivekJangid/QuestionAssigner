@@ -118,3 +118,6 @@ EMAIL_HOST_PASSWORD = '24847060'
 EMAIL_HOST_USER = 'intern_vivek@sarvika.com'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+MEDIA_URL = '/AssignmentMails/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "AssignmentMails")

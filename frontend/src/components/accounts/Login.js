@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+import { Link } from "react-router-dom";
 
 export class Login extends Component {
   state = {
@@ -60,6 +61,9 @@ export class Login extends Component {
               </button>
             </div>
           </form>
+          <span className="btn btn-light submit visible-sm visible-md visible-lg">
+            <Link to="/uploadfile">UPLOAD ASSIGNMENT SOLUTIONS</Link>
+          </span>
         </div>
       </div>
     );

@@ -9,6 +9,7 @@ import store from "./store";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { loadUser } from "./actions/auth";
 import DeleteSkill from "./components/skills/deleteskill";
+import Uploadzip from "./components/SaveZip/uploadzip";
 import {
   HashRouter as Router,
   Route,
@@ -29,6 +30,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/uploadfile" component={Uploadzip} />
                 <PrivateRoute exact path="/" component={Assignment} />
                 <PrivateRoute
                   exact

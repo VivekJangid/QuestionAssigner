@@ -7,7 +7,7 @@ class Skill(models.Model):
 
 
 class File(models.Model):
-    zipfile = models.FileField()
+    file = models.FileField()
 
 
 class Assignment(models.Model):

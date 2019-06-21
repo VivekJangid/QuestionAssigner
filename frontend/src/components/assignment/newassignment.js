@@ -15,7 +15,7 @@ export class NewAssignment extends Component {
 
   static propTypes = {
     newAssignment: PropTypes.func.isRequired
-  };
+  }; 
 
   onChange = e =>
     this.setState({
