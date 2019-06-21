@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { get_Allskills } from "../../actions/skill";
-import { sendMail } from "../../actions/assignment";
 
 export class SingleAssignment extends Component {
   static propTypes = {
@@ -13,8 +12,7 @@ export class SingleAssignment extends Component {
   };
 
   state = {
-    assignment: {},
-    email: ""
+    assignment: {}
   };
 
   componentWillMount() {
@@ -34,15 +32,6 @@ export class SingleAssignment extends Component {
       }
     }
   }
-
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
-
-  onSubmit = e => {
-    e.preventDefault();
-    const { id } = this.props.match.params;
-    const { email } = this.state;
-    this.props.sendMail(email, id);
-  };
 
   render() {
     const {
@@ -85,25 +74,6 @@ export class SingleAssignment extends Component {
             </table>
           </div>
         </Fragment>
-        <div className="container">
-          <div className=" float-right">
-            <br />
-            <hr />
-            <form onSubmit={this.onSubmit}>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                onChange={this.onChange}
-                value={this.state.email}
-                required
-              />
-              <button className="btn btn-primary" type="submit">
-                Send Mail
-              </button>
-            </form>
-          </div>
-        </div>
       </div>
     );
   }
@@ -116,5 +86,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { get_Allskills, sendMail }
+  { get_Allskills }
 )(SingleAssignment);

@@ -3,15 +3,34 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { get_Allassignments, deleteAssignment } from "../../actions/assignment";
 import { Link } from "react-router-dom";
+import { sendMail, sendMailmulti } from "../../actions/assignment";
 import { get_Allskills } from "../../actions/skill";
 
 class Assignment extends Component {
+  state = {
+    email: "",
+    selected: []
+  };
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  onSubmit = e => {
+    e.preventDefault();
+    const { email, selected } = this.state;
+    if (selected.length == 1) {
+      this.props.sendMail(email, selected[0]);
+    } else {
+      this.props.sendMailmulti(email, selected);
+    }
+  };
+
   static propTypes = {
     assignments: PropTypes.array.isRequired,
     get_Allassignments: PropTypes.func.isRequired,
     deleteAssignment: PropTypes.func.isRequired,
     get_Allskills: PropTypes.func.isRequired,
-    skills: PropTypes.array.isRequired
+    skills: PropTypes.array.isRequired,
+    sendMail: PropTypes.func.isRequired
   };
 
   componentWillMount() {
@@ -28,9 +47,36 @@ class Assignment extends Component {
     }
   }
 
+  isSelected = id => {
+    var selected = this.state.selected;
+    if (selected.includes(id)) {
+      var index = selected.indexOf(id);
+      selected.splice(index, 1);
+    } else {
+      selected.push(id);
+    }
+  };
+
   render() {
     return (
       <div className="container card border-light card-body mt-5 mb-5  ">
+        <div className="container">
+          <div className=" float-right">
+            <form onSubmit={this.onSubmit}>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                onChange={this.onChange}
+                value={this.state.email}
+                required
+              />
+              <button className="btn btn-primary" type="submit">
+                Send Mail
+              </button>
+            </form>
+          </div>
+        </div>
         <Fragment>
           <div className="card-header">
             <h3> Assignments</h3>
@@ -40,6 +86,7 @@ class Assignment extends Component {
             <thead>
               <tr>
                 <th>Assignment</th>
+                <th>Selected</th>
                 <th>Skills Required</th>
                 <th>Level Required</th>
                 <th>Created At</th>
@@ -52,6 +99,12 @@ class Assignment extends Component {
                 <tr key={assignment.id}>
                   <td>{assignment.question}</td>
                   <td>
+                    <input
+                      type="checkbox"
+                      onClick={() => this.isSelected(assignment.id)}
+                    />
+                  </td>
+                  <td>
                     {assignment.skills_required.map(sk => (
                       <ol className="list-inline row  m-1 p-1" key={sk}>
                         {this.getskill(sk)}
@@ -62,7 +115,7 @@ class Assignment extends Component {
                   <td>{assignment.created_at}</td>
                   <td>
                     <Link to={"/a/" + assignment.id}>
-                      <button className="btn btn-info btn-sm">Assign</button>
+                      <button className="btn btn-info btn-sm">View</button>
                     </Link>
                   </td>
                   <td>
@@ -96,5 +149,11 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { get_Allassignments, deleteAssignment, get_Allskills }
+  {
+    get_Allassignments,
+    deleteAssignment,
+    get_Allskills,
+    sendMail,
+    sendMailmulti
+  }
 )(Assignment);

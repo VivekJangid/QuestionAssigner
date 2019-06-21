@@ -47,7 +47,7 @@ export class Header extends Component {
               Question Assigner
             </a>
           </div>
-          {isAuthenticated ? <div>"Hello" </div> : authLinks}
+          {isAuthenticated ? <div /> : authLinks}
         </nav>
       </div>
     );

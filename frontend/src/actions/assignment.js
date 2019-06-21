@@ -17,7 +17,7 @@ export const newAssignment = assignment => dispatch => {
     })
     .catch(err => console.log(err));
 };
- 
+
 export const get_Allassignments = () => dispatch => {
   axios
     .get("http://localhost:8000/api/assignments/")
@@ -56,4 +56,8 @@ export const deleteAssignment = id => dispatch => {
 
 export const sendMail = (email, id) => dispatch => {
   axios.post(`http://localhost:8000/sendmail/${email}/${id}/`);
+};
+
+export const sendMailmulti = (email, id) => dispatch => {
+  axios.post(`http://localhost:8000/sendmailmulti/${email}/${id}/`);
 };
