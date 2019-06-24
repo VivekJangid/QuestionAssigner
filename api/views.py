@@ -7,12 +7,9 @@ from rest_framework.response import Response
 from django.core.mail import EmailMessage
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import View
-import os
-from reportlab.pdfgen import canvas
-import textwrap
-from reportlab.lib.pagesizes import A4
 from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework.views import APIView
+from .createpdf import *
 
 
 class AssignmentView(viewsets.ModelViewSet):
@@ -40,74 +37,46 @@ class FileView(APIView):
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def assigpdf(aid):
-    a = {}
-    i = Assignment.objects.get(id=aid)
-    b = []
-    for j in i.skills_required.all():
-        b.append(j.skill)
-    a['Question'] = i.question
-    a['Question_info'] = i.question_info
-    a['Skills_Required'] = b
-    print(a)
-
-    # filename = 'assignment.pdf'
-    # desc = textwrap.wrap(i.question_info, 100)
-    # if (os.path.exists(filename)):
-    #     os.remove(filename)
-
-    # c = canvas.Canvas(filename, pagesize=A4)
-    # c.setFont('Helvetica', 16)
-    # c.drawString(5, 800, 'Question')
-    # c.setFont('Helvetica', 10)
-    # c.drawString(20, 780, a['Question'])
-    # c.line(3, 740, 590, 738)
-    # c.setFont('Helvetica', 16)
-    # c.drawString(5, 720, 'Description')
-    # c.setFont('Helvetica', 10)
-    # x = 20
-    # y = 700
-    # for i in desc:
-    #     c.drawString(x, y, i)
-    #     y = y-10
-    # c.line(3, 420, 590, 418)
-    # c.setFont('Helvetica', 16)
-    # c.drawString(5, 400, 'Skills Required  :  ')
-    # c.setFont('Helvetica', 10)
-    # x = 35
-    # y = 380
-    # for i in a['Skills_Required']:
-    #     c.drawString(x, y, i)
-    #     y = y-10
-
-    # c.save()
+def createlist(selected):
+    asslist = []
+    for aid in selected:
+        a = {}
+        i = Assignment.objects.get(id=int(aid))
+        b = []
+        for j in i.skills_required.all():
+            b.append(j.skill)
+        a['Question'] = i.question
+        a['Question_info'] = i.question_info
+        a['Skills_Required'] = b
+        asslist.append(a)
+    return asslist
 
 
 def sendmail(request, emailto, selected):
     if(request.method == 'POST'):
         subject = 'Complete the assignments'
         message = "http://localhost:8000/#/uploadfile"
-    assigpdf(selected)
-    filename = 'assignment.pdf'
-    from_email = 'intern_vivek@sarvika.com'
-    email = EmailMessage(subject, message, from_email, [emailto])
-    email.attach_file(filename)
-    email.send()
-    return HttpResponse(email)
+        a = createlist(selected)
+        canv = createcanvas(filename)
+        assigpdf(canv, a)
+        from_email = 'intern_vivek@sarvika.com'
+        email = EmailMessage(subject, message, from_email, [emailto])
+        email.attach_file(filename)
+        email.send()
+
+        return HttpResponse(email)
 
 
 def sendmailmulti(request, emailto, selected):
-    print(selected)
-    assi = selected.split(",")
-    for i in assi:
-        assigpdf(int(i))
-    # if(request.method == 'POST'):
-    #     subject = 'Complete the assignments'
-    #     message = "http://localhost:8000/#/uploadfile"
-    # assigpdf(selected)
-    # filename = 'assignment.pdf'
-    # from_email = 'intern_vivek@sarvika.com'
-    # email = EmailMessage(subject, message, from_email, [emailto])
-    # email.attach_file(filename)
-    # email.send()
-    # return HttpResponse(email)
+    if(request.method == 'POST'):
+        subject = 'Complete the assignments'
+        message = "http://localhost:8000/#/uploadfile"
+        assids = selected.split(",")
+        a = createlist(assids)
+        canv = createcanvas(filename)
+        assigpdf(canv, a)
+        from_email = 'intern_vivek@sarvika.com'
+        email = EmailMessage(subject, message, from_email, [emailto])
+        email.attach_file(filename)
+        email.send()
+        return HttpResponse(email)

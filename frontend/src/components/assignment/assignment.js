@@ -19,8 +19,10 @@ class Assignment extends Component {
     const { email, selected } = this.state;
     if (selected.length == 1) {
       this.props.sendMail(email, selected[0]);
+      window.location.reload();
     } else {
       this.props.sendMailmulti(email, selected);
+      window.location.reload();
     }
   };
 
@@ -60,8 +62,13 @@ class Assignment extends Component {
   render() {
     return (
       <div className="container card border-light card-body mt-5 mb-5  ">
-        <div className="container">
-          <div className=" float-right">
+        <div className="container form-inline  w-90 p-1 m-1">
+          <div className=" input-group-btn float-right col-md-6  ">
+            <span className="float-right btn btn-light">
+              <Link to="/newassignment">Add Assignments</Link>
+            </span>
+          </div>
+          <div className=" input-group-btn float-right col-md-6  ">
             <form onSubmit={this.onSubmit}>
               <input
                 type="email"
@@ -78,7 +85,7 @@ class Assignment extends Component {
           </div>
         </div>
         <Fragment>
-          <div className="card-header">
+          <div className="card-header p-2">
             <h3> Assignments</h3>
           </div>
 
@@ -133,9 +140,6 @@ class Assignment extends Component {
               ))}
             </tbody>
           </table>
-          <span className="float-right btn btn-light">
-            <Link to="/newassignment">Add Assignments</Link>
-          </span>
         </Fragment>
       </div>
     );
