@@ -62,11 +62,11 @@ class Assignment extends Component {
   render() {
     return (
       <div className="container card border-light card-body mt-5 mb-5  ">
-        <div className="container form-inline  w-90 p-1 m-1">
-          <div className=" input-group-btn float-right col-md-6  ">
-            <span className="float-right btn btn-light">
+        <div className="row form-inline  w-100 p-2 m-2">
+          <div className=" input-group-btn float-center col-md-6  ">
+            <div className="float-right col-md-6 float-center btn btn-light">
               <Link to="/newassignment">Add Assignments</Link>
-            </span>
+            </div>
           </div>
           <div className=" input-group-btn float-right col-md-6  ">
             <form onSubmit={this.onSubmit}>
